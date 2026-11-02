@@ -1,4 +1,7 @@
+import services.AdestradorService;
 import services.PokedexService;
+
+import java.time.LocalDate;
 
 public class Main {
 
@@ -6,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         //1
-
+/*
         PokedexService pokeSer = new PokedexService();
 
         //Inserir 10 pokemons en la tabla pokedex
@@ -38,20 +41,68 @@ public class Main {
         //Eliminar tódo-los pokemons na pokedex
 
         pokeSer.delete();
-
+*/
         //2
 
+        PokedexService pokeSer = new PokedexService();
+        AdestradorService adSer = new AdestradorService();
+
         //Inserir 10 pokemons en la tabla pokedex
+
+        pokeSer.create(1, "Pikachu", 25, "El raton electrico");
+        pokeSer.create(2, "Bulbasaur", 1, "El pokemon planta");
+        pokeSer.create(3, "Charmander", 4, "El pokemon fuego");
+        pokeSer.create(4, "Squirtle", 7, "El pokemon agua");
+        pokeSer.create(5, "Jigglypuff", 39, "El pokemon hada");
+        pokeSer.create(6, "Meowth", 52, "El gato salvaje");
+        pokeSer.create(7, "Psyduck", 54, "El pokemon agua");
+        pokeSer.create(8, "Mankey", 56, "El pokemon primate");
+        pokeSer.create(9, "Growlithe", 58, "El pokemon perro");
+        pokeSer.create(10, "Poliwag", 60, "El pokemon agua");
+
         //Inserir 2 adestradores na taboa adestrador
+
+        adSer.create("Ash Ketchum", LocalDate.of(2000, 5, 22));
+        adSer.create("Misty", LocalDate.of(2001, 6, 15));
+
         //Listar pokemons na pokedex
+
+        pokeSer.read();
+
         //Listar adestradores
+
+        adSer.read();
+
         //Modificar dous adestradores
+
+        adSer.update(1, "Ash Modificado", LocalDate.of(2000, 8, 10));
+        adSer.update(2, "Misty Modificada", LocalDate.of(2001, 9, 20));
+
         //Modificar duas entradas na pokedex
+
+        pokeSer.update(3, "Charmander Modificado", 8, "Pokemon fuego modificado");
+        pokeSer.update(4, "Squirtle Modificado", 10, "Pokemon agua modificado");
+
         //Listar pokemons na pokedex
+
+        pokeSer.read();
+
         //Listar adestradores
+
+        adSer.read();
+
         //(toXML pokemons)
+
+        pokeSer.toXML();
+
         //(toXML adestradores)
+
+        adSer.toXML();
+
         //Eliminar tódo-los datos das táboas
+
+        pokeSer.delete();
+        adSer.delete();
 
         //3
 

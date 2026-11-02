@@ -5,7 +5,10 @@ import config.HibernateConfig;
 import model.Pokedex;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import java.io.File;
+import javax.xml.*;
 import java.util.List;
 
 public class PokedexService {
@@ -48,7 +51,7 @@ public class PokedexService {
     }
 
     //UPDATE
-    public void update() {
+    public void update(int id, String nome, double peso, String misc) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
 
             Transaction transaction = session.beginTransaction();
@@ -85,6 +88,58 @@ public class PokedexService {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    
-    
+
+    // TO XML
+    public void toXML() {
+
+        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
+
+            List<Pokedex> lista = session.createQuery("FROM Pokedex", Pokedex.class).list();
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            Document documento = builder.newDocument();
+
+            Element raiz = documento.createElement("pokemons");
+            documento.appendChild(raiz);
+
+            for (Pokedex px : lista) {
+
+                Element pokemon = documento.createElement("pokemon");
+
+                Element id = documento.createElement("id");
+                id.setTextContent(String.valueOf(px.getId()));
+
+                Element nome = documento.createElement("nome");
+                nome.setTextContent(px.getNome());
+
+                Element peso = documento.createElement("peso");
+                peso.setTextContent(String.valueOf(px.getPeso()));
+
+                Element misc = documento.createElement("misc");
+                misc.setTextContent(px.getMisc());
+
+                pokemon.appendChild(id);
+                pokemon.appendChild(nome);
+                pokemon.appendChild(peso);
+                pokemon.appendChild(misc);
+
+                raiz.appendChild(pokemon);
+            }
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+
+            DOMSource source = new DOMSource(documento);
+            StreamResult result = new StreamResult(new File("pokemons.xml"));
+
+            transformer.transform(source, result);
+
+            System.out.println("XML de pokemons creado correctamente.");
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
