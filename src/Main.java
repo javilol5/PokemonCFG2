@@ -48,6 +48,9 @@ public class Main {
         AdestradorService adSer = new AdestradorService();
 
         //Inserir 10 pokemons en la tabla pokedex
+        System.out.println();
+        System.out.println("INSERTANDO POKEMONS EN LA TABLA POKEDEX");
+        System.out.println();
 
         pokeSer.create(1, "Pikachu", 25, "El raton electrico");
         pokeSer.create(2, "Bulbasaur", 1, "El pokemon planta");
@@ -61,45 +64,75 @@ public class Main {
         pokeSer.create(10, "Poliwag", 60, "El pokemon agua");
 
         //Inserir 2 adestradores na taboa adestrador
+        System.out.println();
+        System.out.println("INSERTANDO ADESTRADORES EN LA TABLA ADESTRADOR");
+        System.out.println();
 
         adSer.create("Ash Ketchum", LocalDate.of(2000, 5, 22));
         adSer.create("Misty", LocalDate.of(2001, 6, 15));
 
         //Listar pokemons na pokedex
+        System.out.println();
+        System.out.println("LISTANDO POKEMONS EN LA TABLA POKEDEX");
+        System.out.println();
 
         pokeSer.read();
 
         //Listar adestradores
+        System.out.println();
+        System.out.println("LISTANDO ADESTRADORES EN LA TABLA ADESTRADOR");
+        System.out.println();
 
         adSer.read();
 
         //Modificar dous adestradores
+        System.out.println();
+        System.out.println("MODIFICANDO ADESTRADORES EN LA TABLA ADESTRADOR");
+        System.out.println();
 
         adSer.update(1, "Ash Modificado", LocalDate.of(2000, 8, 10));
         adSer.update(2, "Misty Modificada", LocalDate.of(2001, 9, 20));
 
         //Modificar duas entradas na pokedex
+        System.out.println();
+        System.out.println("MODIFICANDO POKEMONS EN LA TABLA POKEDEX");
+        System.out.println();
 
         pokeSer.update(3, "Charmander Modificado", 8, "Pokemon fuego modificado");
         pokeSer.update(4, "Squirtle Modificado", 10, "Pokemon agua modificado");
 
         //Listar pokemons na pokedex
+        System.out.println();
+        System.out.println("LISTANDO POKEMONS EN LA TABLA POKEDEX");
+        System.out.println();
 
         pokeSer.read();
 
         //Listar adestradores
+        System.out.println();
+        System.out.println("LISTANDO ADESTRADORES EN LA TABLA ADESTRADOR");
+        System.out.println();
 
         adSer.read();
 
         //(toXML pokemons)
+        System.out.println();
+        System.out.println("EXPORTANDO POKEMONS A XML");
+        System.out.println();
 
         pokeSer.toXML();
 
         //(toXML adestradores)
+        System.out.println();
+        System.out.println("EXPORTANDO ADESTRADORES A XML");
+        System.out.println();
 
         adSer.toXML();
 
         //Eliminar tódo-los datos das táboas
+        System.out.println();
+        System.out.println("ELIMINANDO POKEMONS Y ADESTRADORES DE LAS TABLAS POKEDEX Y ADESTRADOR");
+        System.out.println();
 
         pokeSer.delete();
         adSer.delete();
